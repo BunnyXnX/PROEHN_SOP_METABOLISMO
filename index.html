@@ -2545,6 +2545,291 @@ html body .inner-app .notesCard .accBody * {
     0 18px 45px rgba(0,0,0,0.16);
 }
 
+
+    /* =========================
+       Interpretación automática del fenotipo
+       ========================= */
+    .inner-app .interpretBox{
+      margin-top: 14px;
+      border: 1px solid rgba(212, 175, 55, 0.52);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.88), rgba(248,250,255,0.82)),
+        radial-gradient(circle at top right, rgba(212,175,55,0.14), transparent 42%);
+      box-shadow:
+        0 0 0 1px rgba(212,175,55,0.14) inset,
+        0 10px 28px rgba(0,0,0,0.08),
+        0 0 22px rgba(212,175,55,0.12);
+      border-radius: 0;
+      padding: 16px 16px 14px;
+      position: relative;
+      overflow: hidden;
+    }
+    .inner-app .interpretBox::before{
+      content:"";
+      position:absolute;
+      inset:0 auto 0 0;
+      width: 4px;
+      background: linear-gradient(180deg, rgba(212,175,55,.95), rgba(255,196,72,.25));
+      box-shadow: 0 0 18px rgba(212,175,55,.35);
+    }
+    .inner-app .interpretHeader{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+    .inner-app .interpretTitle{
+      font-size: 14px;
+      font-weight: 900;
+      letter-spacing: .08em;
+      color:#000000;
+      text-transform: uppercase;
+    }
+    .inner-app .interpretTag{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      padding: 8px 12px;
+      border: 1px solid rgba(212,175,55,0.38);
+      background: rgba(255,248,224,0.72);
+      color:#5f4500;
+      font-weight: 800;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      box-shadow: 0 0 0 1px rgba(212,175,55,0.10) inset;
+    }
+    .inner-app .interpretTagDot{
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #d4af37;
+      box-shadow: 0 0 12px rgba(212,175,55,.6);
+      flex: 0 0 auto;
+    }
+    .inner-app .interpretText{
+      margin: 0 0 12px;
+      color:#000000;
+      font-size: 14px;
+      line-height: 1.58;
+      font-weight: 700;
+    }
+    .inner-app .semaforoGrid{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 12px;
+    }
+    .inner-app .semaforoCard{
+      border: 1px solid rgba(212,175,55,0.34);
+      background: rgba(255,255,255,0.76);
+      box-shadow: 0 0 0 1px rgba(212,175,55,0.08) inset;
+      padding: 12px;
+      min-height: 112px;
+      border-radius: 0;
+    }
+    .inner-app .semaforoLabel{
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color:#000000;
+      margin-bottom: 10px;
+    }
+    .inner-app .semaforoValue{
+      display:inline-flex;
+      align-items:center;
+      gap: 10px;
+      min-height: 32px;
+      padding: 8px 12px;
+      font-weight: 900;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      border-radius: 0;
+      border: 1px solid rgba(15,23,42,.12);
+      background: rgba(255,255,255,.88);
+      color:#000000;
+      box-shadow: 0 8px 18px rgba(0,0,0,.06);
+      margin-bottom: 10px;
+    }
+    .inner-app .semaforoDot{
+      width: 12px;
+      height: 12px;
+      border-radius: 999px;
+      flex: 0 0 auto;
+      box-shadow: 0 0 14px currentColor;
+      background: currentColor;
+    }
+    .inner-app .semLow{
+      color:#19a85f;
+      border-color: rgba(25,168,95,.28);
+      background: rgba(25,168,95,.11);
+      box-shadow: 0 0 0 1px rgba(25,168,95,.10) inset, 0 10px 18px rgba(25,168,95,.08);
+    }
+    .inner-app .semMid{
+      color:#f59e0b;
+      border-color: rgba(245,158,11,.30);
+      background: rgba(245,158,11,.12);
+      box-shadow: 0 0 0 1px rgba(245,158,11,.10) inset, 0 10px 18px rgba(245,158,11,.08);
+    }
+    .inner-app .semHigh{
+      color:#ef4444;
+      border-color: rgba(239,68,68,.30);
+      background: rgba(239,68,68,.11);
+      box-shadow: 0 0 0 1px rgba(239,68,68,.10) inset, 0 10px 18px rgba(239,68,68,.08);
+    }
+    .inner-app .semNeutral{
+      color:#4f7cff;
+      border-color: rgba(79,124,255,.26);
+      background: rgba(79,124,255,.10);
+      box-shadow: 0 0 0 1px rgba(79,124,255,.10) inset, 0 10px 18px rgba(79,124,255,.08);
+    }
+    .inner-app .semaforoHint{
+      margin: 0;
+      color:#000000;
+      font-size: 13px;
+      line-height: 1.48;
+      font-weight: 700;
+    }
+    @media (max-width: 860px){
+      .inner-app .semaforoGrid{
+        grid-template-columns: 1fr;
+      }
+    }
+
+
+
+/* Forzar texto negro en valores del semáforo (incluido 'En espera') */
+.inner-app .semaforoValue span:last-child{
+  color:#000000 !important;
+}
+
+
+/* Forzar texto negro en el fenotipo mostrado en Interpretación automática */
+#interpFenotipoTag span:last-child{
+  color:#000000 !important;
+}
+
+
+    /* =========================
+       Panel automático de labs recomendados
+       ========================= */
+    .inner-app .labsPanel{
+      margin-top: 14px;
+      border: 1px solid rgba(212,175,55,.50);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.92), rgba(250,250,252,.88)),
+        radial-gradient(circle at top right, rgba(212,175,55,.12), transparent 40%);
+      box-shadow:
+        0 0 0 1px rgba(212,175,55,.12) inset,
+        0 10px 28px rgba(0,0,0,.08),
+        0 0 22px rgba(212,175,55,.10);
+      padding: 16px;
+      border-radius: 0;
+    }
+    .inner-app .labsHeader{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+    .inner-app .labsTitle{
+      font-size: 14px;
+      font-weight: 900;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color:#000000;
+    }
+    .inner-app .labsTag{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 12px;
+      border:1px solid rgba(212,175,55,.38);
+      background: rgba(255,248,224,.72);
+      color:#000000;
+      font-weight:800;
+      font-size:12px;
+      text-transform: uppercase;
+      letter-spacing:.08em;
+      box-shadow: 0 0 0 1px rgba(212,175,55,.10) inset;
+    }
+    .inner-app .labsTagDot{
+      width:8px; height:8px; border-radius:999px;
+      background:#d4af37;
+      box-shadow:0 0 12px rgba(212,175,55,.6);
+      flex:0 0 auto;
+    }
+    .inner-app .labsIntro{
+      margin: 0 0 12px;
+      color:#000000;
+      font-size:14px;
+      line-height:1.58;
+      font-weight:700;
+    }
+    .inner-app .labsGrid{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 12px;
+    }
+    .inner-app .labsCard{
+      border: 1px solid rgba(212,175,55,.34);
+      background: rgba(255,255,255,.78);
+      box-shadow: 0 0 0 1px rgba(212,175,55,.08) inset;
+      padding: 12px;
+      border-radius: 0;
+      min-height: 120px;
+    }
+    .inner-app .labsCardTitle{
+      margin:0 0 10px;
+      color:#000000;
+      font-size:12px;
+      font-weight:900;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+    .inner-app .labsList{
+      margin:0;
+      padding-left: 18px;
+      color:#000000;
+      font-size:13px;
+      line-height:1.55;
+      font-weight:700;
+    }
+    .inner-app .labsFooter{
+      margin-top: 12px;
+      padding: 10px 12px;
+      border:1px solid rgba(212,175,55,.32);
+      background: rgba(255,255,255,.72);
+      color:#000000;
+      font-size:13px;
+      line-height:1.55;
+      font-weight:700;
+      border-radius: 0;
+    }
+    @media (max-width: 860px){
+      .inner-app .labsGrid{
+        grid-template-columns: 1fr;
+      }
+    }
+
+
+/* ===== Force black text in Estudios sugeridos según contexto section ===== */
+.labsPanel,
+.labsPanel .labsTitle,
+.labsPanel .labsIntro,
+.labsPanel .labsCardTitle,
+.labsPanel .labsList,
+.labsPanel .labsList li,
+.labsPanel .labsFooter,
+.labsPanel .labsTag span{
+  color:#000000 !important;
+}
+
 </style>
 </head>
 <body>
@@ -2646,7 +2931,8 @@ html body .inner-app .notesCard .accBody * {
         </div>
 
         <div class="patientBox">
-          <label class="patientLabel" for="patientName">Nombre de la paciente</label>
+          <label class="patientLabel" for="patientName"></label>
+          <div style="font-weight:800;margin-bottom:6px;color:#ffffff;">Nombre del paciente</div>
           <input class="patientInput" id="patientName" type="text" placeholder="Ej. María González" autocomplete="off" />
         </div>
 
@@ -2729,6 +3015,55 @@ html body .inner-app .notesCard .accBody * {
             <div class="resMeta" id="resMeta">Criterios positivos: 0/3</div>
           </div>
 
+          <div class="interpretBox" id="fenotipoInterpretBox" aria-live="polite">
+            <div class="interpretHeader">
+              <div class="interpretTitle">Interpretación automática</div>
+              <div class="interpretTag" id="interpFenotipoTag">
+                <span class="interpretTagDot"></span>
+                <span>Sin definir</span>
+              </div>
+            </div>
+
+            <p class="interpretText" id="interpTexto">
+              Aquí aparecerá una orientación automática del fenotipo sugerido para que la herramienta no solo detecte, sino también oriente.
+            </p>
+
+            <div class="semaforoGrid">
+              <div class="semaforoCard">
+                <div class="semaforoLabel">Riesgo metabólico</div>
+                <div class="semaforoValue semNeutral" id="interpRiesgo">
+                  <span class="semaforoDot"></span>
+                  <span>En espera</span>
+                </div>
+                <p class="semaforoHint" id="interpRiesgoHint">
+                  Completa al menos 2 criterios positivos para activar la interpretación.
+                </p>
+              </div>
+
+              <div class="semaforoCard">
+                <div class="semaforoLabel">Prioridad clínica</div>
+                <div class="semaforoValue semNeutral" id="interpPrioridad">
+                  <span class="semaforoDot"></span>
+                  <span>En espera</span>
+                </div>
+                <p class="semaforoHint" id="interpPrioridadHint">
+                  Se mostrará una jerarquía práctica del caso según el fenotipo calculado.
+                </p>
+              </div>
+
+              <div class="semaforoCard">
+                <div class="semaforoLabel">Siguiente paso sugerido</div>
+                <div class="semaforoValue semNeutral" id="interpPaso">
+                  <span class="semaforoDot"></span>
+                  <span>En espera</span>
+                </div>
+                <p class="semaforoHint" id="interpPasoHint">
+                  Labs, USG, estilo de vida o derivación aparecerán aquí de forma educativa.
+                </p>
+              </div>
+            </div>
+          </div>
+
           <div class="resetWrap" style="gap:12px; flex-wrap:wrap;">
           </div>
 
@@ -2749,6 +3084,94 @@ html body .inner-app .notesCard .accBody * {
               <button class="haYN" type="button" id="haClinBtn" data-val="no">NO</button>
             </div>
           </div>
+
+<!-- =========================
+ESTUDIOS SUGERIDOS SEGÚN CONTEXTO
+========================= -->
+<section class="labsPanel">
+
+  <div class="labsHeader">
+    <div class="labsTitle">
+      Estudios sugeridos según contexto
+    </div>
+
+    <div class="labsTag">
+      <span class="labsTagDot"></span>
+      <span>Guía clínica orientativa</span>
+    </div>
+  </div>
+
+  <p class="labsIntro">
+    Esta sección muestra estudios que pueden ser útiles durante la evaluación
+    clínica del síndrome de ovario poliquístico. Los estudios deben elegirse
+    según síntomas, hallazgos clínicos, contexto metabólico y diagnóstico diferencial.
+  </p>
+
+  <div class="labsGrid">
+
+    <div class="labsCard">
+      <h4 class="labsCardTitle">
+        Si sospechas resistencia a la insulina o riesgo metabólico
+      </h4>
+      <ul class="labsList">
+        <li>Glucosa en ayuno</li>
+        <li>Insulina en ayuno</li>
+        <li>HbA1c</li>
+        <li>Perfil lipídico completo</li>
+        <li>ALT / AST</li>
+        <li>Circunferencia de cintura</li>
+        <li>Índice cintura-cadera (ICC)</li>
+      </ul>
+    </div>
+
+    <div class="labsCard">
+      <h4 class="labsCardTitle">
+        Si predominan signos de hiperandrogenismo
+      </h4>
+      <ul class="labsList">
+        <li>SHBG</li>
+        <li>Testosterona total</li>
+        <li>Testosterona libre</li>
+        <li>DHEA-S</li>
+        <li>Androstenediona</li>
+        <li>LH / FSH</li>
+      </ul>
+    </div>
+
+    <div class="labsCard">
+      <h4 class="labsCardTitle">
+        Si hay dudas diagnósticas (mimics de SOP)
+      </h4>
+      <ul class="labsList">
+        <li>TSH</li>
+        <li>Prolactina</li>
+        <li>17-OH progesterona</li>
+        <li>Cortisol (si sospecha Cushing)</li>
+        <li>Vitamina D</li>
+      </ul>
+    </div>
+
+    <div class="labsCard">
+      <h4 class="labsCardTitle">
+        Evaluación estructural y correlación clínica
+      </h4>
+      <ul class="labsList">
+        <li>Ultrasonido pélvico / ovárico</li>
+        <li>Correlación con ciclo menstrual</li>
+        <li>Seguimiento de composición corporal</li>
+        <li>Evaluación clínica integral</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="labsFooter">
+    Nota: estos estudios son orientativos y deben interpretarse junto con
+    historia clínica, exploración física y contexto metabólico‑reproductivo.
+  </div>
+
+</section>
+
 
           <section class="bfSection" id="bfSection">
             <h3 class="bfTitle">Calculadora de porcentaje de grasa aproximado</h3>
@@ -3602,6 +4025,101 @@ html body .inner-app .notesCard .accBody * {
         setActiveApproachCard(letter);
       }
 
+
+
+      
+
+      function renderLabsList(items){
+        return (items || []).map(item => `<li>${item}</li>`).join("");
+      }
+
+      
+
+      const interpretationMap = {
+        A: {
+          text: "Mayor carga diagnóstica. Priorizar evaluación metabólica, androgénica y ovulatoria.",
+          risk: { level: "high", label: "Alto", hint: "Suele concentrar más carga metabólica y endocrina; conviene revisar glucosa, HbA1c, insulina/HOMA-IR, lípidos, PA, cintura/ICC y contexto ovulatorio." },
+          priority: { level: "high", label: "Alta", hint: "Conviene priorizar el caso por impacto en ciclo, hiperandrogenismo y riesgo cardiometabólico." },
+          next: { level: "high", label: "Labs + USG", hint: "Pedir laboratorio metabólico y androgénico, correlacionar con ultrasonido y reforzar estrategia de estilo de vida desde el inicio." },
+          tag: "Fenotipo A • Mayor carga"
+        },
+        B: {
+          text: "Sin morfología poliquística visible; vigilar hiperandrogenismo y alteraciones menstruales.",
+          risk: { level: "mid", label: "Medio", hint: "Aunque no haya MOP en USG, sigue siendo clave buscar IR y alteraciones metabólicas subyacentes." },
+          priority: { level: "high", label: "Alta", hint: "La combinación de menstrual + hiperandrogenismo suele justificar estudio dirigido y seguimiento estrecho." },
+          next: { level: "mid", label: "Labs", hint: "Solicitar laboratorio metabólico/androgénico y repetir USG solo si el contexto clínico lo justifica." },
+          tag: "Fenotipo B • Enfoque dirigido"
+        },
+        C: {
+          text: "Fenotipo ovulatorio; revisar contexto metabólico aunque haya ciclos conservados.",
+          risk: { level: "mid", label: "Medio", hint: "No asumir bajo riesgo solo porque ovule; conviene vigilar glucosa, lípidos y manifestaciones de hiperandrogenismo." },
+          priority: { level: "mid", label: "Media", hint: "La prioridad suele centrarse en hiperandrogenismo, piel/vello y prevención metabólica." },
+          next: { level: "mid", label: "Labs + estilo de vida", hint: "Correlacionar andrógenos/lípidos/glucosa y ajustar entrenamiento, composición corporal y nutrición." },
+          tag: "Fenotipo C • Ovulatorio"
+        },
+        D: {
+          text: "Fenotipo no hiperandrogénico; valorar diferencial y contexto clínico.",
+          risk: { level: "low", label: "Bajo", hint: "En general la carga androgénica es menor, pero no exime de revisar salud metabólica básica y función ovulatoria." },
+          priority: { level: "mid", label: "Media", hint: "Conviene descartar mimics, confirmar contexto menstrual/ovulatorio y ordenar el estudio con criterio." },
+          next: { level: "mid", label: "USG / diferencial", hint: "Valorar diferencial, correlacionar con historia clínica, TSH/prolactina si aplica y sostener plan de estilo de vida." },
+          tag: "Fenotipo D • Diferencial"
+        },
+        neutral: {
+          text: "Se necesitan al menos 2 criterios positivos para activar una orientación útil del fenotipo.",
+          risk: { level: "neutral", label: "En espera", hint: "Completa los criterios positivos para generar el mini semáforo." },
+          priority: { level: "neutral", label: "En espera", hint: "La prioridad clínica se activará cuando exista combinación diagnóstica suficiente." },
+          next: { level: "neutral", label: "En espera", hint: "Al activarse, aquí aparecerá la ruta sugerida: labs, USG, estilo de vida o derivación." },
+          tag: "Sin definir"
+        }
+      };
+
+      function buildSemaforoValue(obj){
+        const clsMap = { low: "semLow", mid: "semMid", high: "semHigh", neutral: "semNeutral" };
+        const cls = clsMap[obj.level] || "semNeutral";
+        return `<span class="semaforoDot"></span><span>${obj.label}</span>`;
+      }
+
+      function applySemaforoClass(el, level){
+        el.classList.remove("semLow","semMid","semHigh","semNeutral");
+        if (level === "low") el.classList.add("semLow");
+        else if (level === "mid") el.classList.add("semMid");
+        else if (level === "high") el.classList.add("semHigh");
+        else el.classList.add("semNeutral");
+      }
+
+      function fillInterpretation(letter){
+        const map = interpretationMap[letter] || interpretationMap.neutral;
+        const tag = document.getElementById("interpFenotipoTag");
+        const textEl = document.getElementById("interpTexto");
+        const riskEl = document.getElementById("interpRiesgo");
+        const priorityEl = document.getElementById("interpPrioridad");
+        const stepEl = document.getElementById("interpPaso");
+        const riskHint = document.getElementById("interpRiesgoHint");
+        const priorityHint = document.getElementById("interpPrioridadHint");
+        const stepHint = document.getElementById("interpPasoHint");
+
+        if (tag) tag.innerHTML = `<span class="interpretTagDot"></span><span>${map.tag}</span>`;
+        if (textEl) textEl.textContent = map.text;
+
+        if (riskEl){
+          applySemaforoClass(riskEl, map.risk.level);
+          riskEl.innerHTML = buildSemaforoValue(map.risk);
+        }
+        if (priorityEl){
+          applySemaforoClass(priorityEl, map.priority.level);
+          priorityEl.innerHTML = buildSemaforoValue(map.priority);
+        }
+        if (stepEl){
+          applySemaforoClass(stepEl, map.next.level);
+          stepEl.innerHTML = buildSemaforoValue(map.next);
+        }
+
+        if (riskHint) riskHint.textContent = map.risk.hint;
+        if (priorityHint) priorityHint.textContent = map.priority.hint;
+        if (stepHint) stepHint.textContent = map.next.hint;
+      }
+
+
       /* =========================
          SOP: botones SI/NO + resultado + reset
          ========================= */
@@ -3667,6 +4185,8 @@ html body .inner-app .notesCard .accBody * {
           setResultPulse(false);
           activateCard(null);
           fillTopApproach(null, "");
+          fillInterpretation(null);
+          
           return;
         }
 
@@ -3684,6 +4204,8 @@ html body .inner-app .notesCard .accBody * {
         activateCard(letter);
         setResultPulse(!!letter);
         fillTopApproach(letter, f);
+        fillInterpretation(letter);
+        
       }
 
       btns.forEach(btn => {
@@ -4065,6 +4587,24 @@ html body .inner-app .notesCard .accBody * {
         const chosenApproach = fLetter ? approachMap[fLetter] : [];
         const chosenTitle = fLetter ? `${phenotypeNames[fLetter]} (${fLetter})` : "—";
 
+        const interpFenotipoTag = (document.getElementById("interpFenotipoTag")?.innerText || "—").replace(/\s+/g, " ").trim();
+        const interpTexto = (document.getElementById("interpTexto")?.textContent || "—").trim();
+        const interpRiesgo = (document.getElementById("interpRiesgo")?.innerText || "—").replace(/\s+/g, " ").trim();
+        const interpRiesgoHint = (document.getElementById("interpRiesgoHint")?.textContent || "—").trim();
+        const interpPrioridad = (document.getElementById("interpPrioridad")?.innerText || "—").replace(/\s+/g, " ").trim();
+        const interpPrioridadHint = (document.getElementById("interpPrioridadHint")?.textContent || "—").trim();
+        const interpPaso = (document.getElementById("interpPaso")?.innerText || "—").replace(/\s+/g, " ").trim();
+        const interpPasoHint = (document.getElementById("interpPasoHint")?.textContent || "—").trim();
+
+        const labsFenotipoTag = (document.getElementById("labsFenotipoTag")?.innerText || "—").replace(/\s+/g, " ").trim();
+        const labsIntroTxt = (document.getElementById("labsIntro")?.textContent || "—").trim();
+        const labsMetabolicoTxt = Array.from(document.querySelectorAll("#labsMetabolico li")).map(li => li.textContent.trim()).join("; ") || "—";
+        const labsAndrogenicoTxt = Array.from(document.querySelectorAll("#labsAndrogenico li")).map(li => li.textContent.trim()).join("; ") || "—";
+        const labsDiferencialesTxt = Array.from(document.querySelectorAll("#labsDiferenciales li")).map(li => li.textContent.trim()).join("; ") || "—";
+        const labsImagenTxt = Array.from(document.querySelectorAll("#labsImagen li")).map(li => li.textContent.trim()).join("; ") || "—";
+        const labsFooterTxt = (document.getElementById("labsFooterNota")?.textContent || "—").trim();
+
+
         const allApproachesHtml = ["A","B","C","D"].map(k => {
           const title = `${phenotypeNames[k]} (${k})`;
           const activeBadge = (k === fLetter) ? `<span style="margin-left:10px; padding:2px 8px; border-radius: 0; border:1px solid #fb923c; background:#fff7ed; font-size:11px; font-weight:700;">DETECTADO</span>` : "";
@@ -4117,7 +4657,45 @@ html body .inner-app .notesCard .accBody * {
   </div>
 
   <div class="box">
-    <h2>2) Abordaje ideal según fenotipo detectado</h2>
+    <h2>2) Interpretación automática del fenotipo</h2>
+    <p><strong>Fenotipo mostrado:</strong> ${escapeHtml(interpFenotipoTag)}</p>
+    <p><strong>Interpretación:</strong> ${escapeHtml(interpTexto)}</p>
+    <table>
+      <tr><th>Indicador</th><th>Resultado</th><th>Orientación</th></tr>
+      <tr>
+        <td>Riesgo metabólico</td>
+        <td>${escapeHtml(interpRiesgo)}</td>
+        <td>${escapeHtml(interpRiesgoHint)}</td>
+      </tr>
+      <tr>
+        <td>Prioridad clínica</td>
+        <td>${escapeHtml(interpPrioridad)}</td>
+        <td>${escapeHtml(interpPrioridadHint)}</td>
+      </tr>
+      <tr>
+        <td>Siguiente paso sugerido</td>
+        <td>${escapeHtml(interpPaso)}</td>
+        <td>${escapeHtml(interpPasoHint)}</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="box">
+    <h2>3) Estudios sugeridos según contexto</h2>
+    <p><strong>Enfoque general:</strong> ${escapeHtml(labsFenotipoTag)}</p>
+    <p><strong>Enfoque:</strong> ${escapeHtml(labsIntroTxt)}</p>
+    <table>
+      <tr><th>Bloque</th><th>Labs / correlación sugerida</th></tr>
+      <tr><td>Metabólico</td><td>${escapeHtml(labsMetabolicoTxt)}</td></tr>
+      <tr><td>Androgénico / endocrino</td><td>${escapeHtml(labsAndrogenicoTxt)}</td></tr>
+      <tr><td>Diferenciales / apoyo</td><td>${escapeHtml(labsDiferencialesTxt)}</td></tr>
+      <tr><td>Imagen / correlación</td><td>${escapeHtml(labsImagenTxt)}</td></tr>
+    </table>
+    <p><strong>Nota:</strong> ${escapeHtml(labsFooterTxt)}</p>
+  </div>
+
+  <div class="box">
+    <h2>4) Abordaje ideal según fenotipo detectado</h2>
     <p><strong>Fenotipo:</strong> ${escapeHtml(chosenTitle)}</p>
     ${
       fLetter
@@ -4127,7 +4705,7 @@ html body .inner-app .notesCard .accBody * {
   </div>
 
   <div class="box">
-    <h2>3) Composición corporal (US Navy, aproximación)</h2>
+    <h2>5) Composición corporal (US Navy, aproximación)</h2>
     <p><strong>Sexo:</strong> ${escapeHtml(sexLabel)}</p>
     <table>
       <tr><th>Dato</th><th>Valor</th></tr>
@@ -4143,13 +4721,13 @@ html body .inner-app .notesCard .accBody * {
   </div>
 
   <div class="box">
-    <h2>4) Índice cintura-cadera (ICC)</h2>
+    <h2>6) Índice cintura-cadera (ICC)</h2>
     <p><strong>ICC:</strong> <span class="tag ${iccHigh ? "high" : ""}">${escapeHtml(iccVal)}${iccHigh ? " (alto)" : ""}</span></p>
     <p class="muted">Puntos de corte: Mujeres &gt; 0.85 • Hombres &gt; 0.95.</p>
   </div>
 
   <div class="box">
-    <h2>5) Evaluador de salud metabólica (Síndrome Metabólico)</h2>
+    <h2>7) Evaluador de salud metabólica (Síndrome Metabólico)</h2>
     <p><strong>Positivos:</strong> ${escapeHtml(String(msYes))}/5</p>
     <p><strong>${escapeHtml(msInterpretTxt)}</strong></p>
     <p>${escapeHtml(msBottomTxt)}</p>
@@ -4164,17 +4742,17 @@ html body .inner-app .notesCard .accBody * {
   </div>
 
   <div class="box">
-    <h2>6) Notas adjuntas</h2>
+    <h2>8) Notas adjuntas</h2>
     <p style="white-space:pre-line;">${escapeHtml(notasPlain)}</p>
   </div>
 
   <div class="box">
-    <h2>7) Pautas adicionales</h2>
+    <h2>9) Pautas adicionales</h2>
     <p style="white-space:pre-line;">${escapeHtml(pautasPlain)}</p>
   </div>
 
   <div class="box">
-    <h2>8) Evaluador de vitamina D3</h2>
+    <h2>10) Evaluador de vitamina D3</h2>
     <table>
       <tr><th>Dato</th><th>Valor</th></tr>
       <tr><td>Resultado ingresado</td><td>${escapeHtml(vitdDisplay)}</td></tr>
